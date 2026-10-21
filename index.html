@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#173c32">
-<title>Campo | Compras de gado</title>
+<meta name="theme-color" content="#1f4e78">
+<title>Compras de gado | Escritório</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,98 +13,98 @@
   <div class="brand-plate"><img src="assets/logo-csap.jpeg" alt="Companhia Sul Americana de Pecuária" width="176" height="85"></div>
   <div class="brand-sub">Controle de compras de gado</div>
   <div class="aside-label">ESCRITÓRIO</div>
-  <nav><button id="nav-list" class="nav active">▦ &nbsp; Compras</button><button id="nav-guide" class="nav">◉ &nbsp; Guia de cálculos</button></nav>
-  <div class="sidebar-bottom"><div class="group-plate"><img src="assets/logo-gvq.png" alt="Grupo Vilela de Queiroz" width="140" height="66"></div>Protótipo local<br>Baseado nas abas Layout e Pesagem</div>
+  <nav aria-label="Menu principal"><button id="nav-list" class="nav active">▦ &nbsp; Todas as compras</button><button id="nav-guide" class="nav">◉ &nbsp; Como preencher</button></nav>
+  <div class="sidebar-bottom"><div class="group-plate"><img src="assets/logo-gvq.png" alt="Grupo Vilela de Queiroz" width="140" height="66"></div>Versão de demonstração<br>Referência: planilha de compras</div>
  </aside>
  <main>
-  <header><div><small>ÁREA INTERNA / CONTROLE COMERCIAL</small><div class="header-title">Negociação de compra de gado</div></div><span class="user-badge">ES</span></header>
+  <header><div><small>ESCRITÓRIO / COMPRAS DE GADO</small><div class="header-title">Controle de compras</div></div><span class="user-badge" aria-label="Escritório">ES</span></header>
   <section id="list-view">
-   <div class="hero"><div><small>PAINEL DO ESCRITÓRIO</small><h1>Compras de gado</h1><p>Da pesagem à conferência das notas e do pagamento.</p></div><div class="toolbar"><button id="backup" class="button light">↓ Exportar backup</button><button id="new" class="button primary">＋ Nova compra</button></div></div>
+   <div class="hero"><div><small>PAINEL DO ESCRITÓRIO</small><h1>Compras de gado</h1><p>Cadastre a compra, confira a pesagem e acompanhe as notas e o pagamento.</p></div><div class="toolbar"><button id="backup" class="button light">↓ Baixar backup</button><button id="new" class="button primary">＋ Cadastrar compra</button></div></div>
    <div class="metrics" id="metrics"></div>
    <div class="panel">
-    <div class="panel-head"><div><h2>Relação de compras</h2><p>Selecione uma compra para abrir o layout completo.</p></div><button id="import" class="button light small">Importar backup</button></div>
-    <div class="filters"><input id="query" type="search" placeholder="Buscar fornecedor, fazenda, comprador, O.C."><select id="status-filter"><option value="">Todos os status</option><option>Em conferência</option><option>Pendente</option><option>Concluída</option></select><select id="buyer-filter"><option value="">Todos os compradores</option></select><input id="date-from" type="date" aria-label="Data inicial"><input id="date-to" type="date" aria-label="Data final"><button id="reset-filters" class="button light small">Limpar</button></div>
-    <div class="table-scroll"><table><thead><tr><th>Compra / Fornecedor</th><th>Responsável</th><th>Status</th><th>Recebimento</th><th class="num">Cabeças</th><th class="num">Valor do gado</th><th></th></tr></thead><tbody id="purchase-rows"></tbody></table></div>
+    <div class="panel-head"><div><h2>Compras registradas</h2><p>Abra uma compra para preencher ou conferir os dados.</p></div><button id="import" class="button light small">Carregar backup</button></div>
+    <div class="filters"><input id="query" type="search" aria-label="Buscar compras" placeholder="Buscar por fornecedor, fazenda, responsável ou O.C."><select id="status-filter" aria-label="Filtrar por situação"><option value="">Todas as situações</option><option>Em conferência</option><option>Pendente</option><option>Concluída</option></select><select id="buyer-filter" aria-label="Filtrar por responsável"><option value="">Todos os responsáveis</option></select><input id="date-from" type="date" aria-label="Compra a partir de"><input id="date-to" type="date" aria-label="Compra até"><button id="reset-filters" class="button light small">Limpar filtros</button></div>
+    <div class="table-scroll"><table><thead><tr><th>O.C. / fornecedor</th><th>Responsável</th><th>Situação</th><th>Fazenda de recebimento</th><th class="num">Cabeças</th><th class="num">Valor do gado</th><th><span class="sr-only">Ações</span></th></tr></thead><tbody id="purchase-rows"></tbody></table></div>
     <div class="panel-foot" id="table-count"></div>
    </div>
-   <div class="privacy">Dados ficam somente neste navegador. Este protótipo público não tem autenticação nem banco de dados compartilhado. Use apenas dados fictícios até existir uma versão privada.</div>
+   <div class="privacy">Esta demonstração salva os dados apenas neste navegador. Use dados fictícios: o site ainda não tem acesso restrito.</div>
   </section>
   <section id="guide-view" hidden>
-   <div class="hero"><div><small>REFERÊNCIA OPERACIONAL</small><h1>Como os cálculos funcionam</h1><p>Regras extraídas do arquivo de referência, sem executar macros.</p></div></div>
-   <div class="panel guide"><h2>Pesagem e rendimento</h2><p>Registre os pesos individuais em grupos de pesagem. Cada grupo pode ter seu próprio rendimento. O sistema soma as cabeças e os quilos, aplica os descontos lançados com sinal negativo e calcula o rendimento ponderado pelo peso.</p>
-   <h2>Preço e valor do gado</h2><p>O valor total do romaneio, com desconto de valor quando houver, é dividido por peso final ÷ 30 para obter o preço negociado por arroba. O valor do gado no Layout é preço negociado × peso final × rendimento ponderado ÷ 15. Essas duas bases de arroba são mantidas conforme as fórmulas originais.</p>
-   <h2>Funrural e acerto</h2><p>As condições de empresa e opção do fornecedor determinam uma alíquota da planilha. A retenção aparece negativa. O valor bruto e o líquido do fornecedor seguem as fórmulas de “Descontar Funrrural?”; as notas fiscais e devoluções formam o saldo de nota complementar ou devolução.</p>
-   <h2>Conferência</h2><p>Confira manualmente alíquotas, notas, banco e valores antes de realizar pagamentos. O campo de frete previsto é informativo, como na planilha. Corretagem é apresentada em separado. O protótipo não emite documentos fiscais, não executa macros e ainda não recebe dados automaticamente do outro sistema.</p>
-   <h2>Armazenamento</h2><p>Os dados são salvos no navegador deste dispositivo. Limpar o armazenamento apaga as compras. Faça backups em JSON para guardar seus testes. A importação adiciona registros novos e ignora identificadores repetidos.</p></div>
+   <div class="hero"><div><small>GUIA DE PREENCHIMENTO</small><h1>Como preencher e conferir</h1><p>Entenda de onde vêm os totais antes de concluir uma compra.</p></div></div>
+   <div class="panel guide"><h2>1. Registre a pesagem</h2><p>Crie um grupo para cada folha ou romaneio e informe os pesos dos animais em kg. Cada grupo pode ter rendimento diferente. O sistema soma as cabeças e os quilos e calcula o rendimento médio considerando o peso de cada grupo. Digite os descontos com sinal negativo.</p>
+   <h2>2. Confira o valor da compra</h2><p>Informe o valor total do romaneio antes dos descontos. O preço negociado por arroba é o valor final dividido pelo peso final ÷ 30. O valor do gado usa o preço negociado × peso final × rendimento ponderado ÷ 15. Essas são as duas bases usadas na planilha.</p>
+   <h2>3. Confira o Funrural e as notas</h2><p>Informe o tipo do fornecedor, o tipo da empresa compradora e a opção de Funrural. A retenção aparece como valor negativo. Cadastre as notas fiscais e, quando houver, a devolução. A diferença indica nota complementar ou devolução a conferir.</p>
+   <h2>4. Revise antes do pagamento</h2><p>Confira as alíquotas, o valor das notas, os dados bancários e os resultados na etapa “Conferência”. O frete previsto é apenas informativo na planilha, e a corretagem aparece separadamente. Esta versão não emite documentos fiscais nem recebe os dados do outro sistema automaticamente.</p>
+   <h2>Como guardar os testes</h2><p>As compras ficam salvas no navegador deste dispositivo. Clique em “Baixar backup” para guardar uma cópia. “Carregar backup” acrescenta compras que ainda não existem aqui. Limpar os dados do navegador pode apagar os registros.</p></div>
   </section>
   <section id="editor-view" hidden>
-   <div class="hero"><div><button id="back" class="back">← Voltar às compras</button><small>FICHA DE COMPRA</small><h1 id="editor-title">Nova compra</h1><p>Preencha os dados e confira os resultados da planilha.</p></div><div class="toolbar"><button id="print" class="button light">Imprimir ficha</button><button id="save" class="button primary">Salvar compra</button></div></div>
-   <div class="tabs" role="tablist" aria-label="Etapas da compra"><button class="tab active" data-tab="commercial">1. Negociação</button><button class="tab" data-tab="weighing">2. Pesagem</button><button class="tab" data-tab="invoice">3. Notas e viagem</button><button class="tab" data-tab="results">4. Conferência</button></div>
+   <div class="hero"><div><button id="back" class="back">← Voltar às compras</button><small>FICHA DE COMPRA</small><h1 id="editor-title">Cadastrar compra</h1><p>Preencha as etapas abaixo. Você pode salvar a compra e voltar depois.</p></div><div class="toolbar"><button id="print" class="button light">Imprimir ficha</button><button id="save" class="button primary">Salvar compra</button></div></div>
+   <div class="tabs" role="tablist" aria-label="Etapas da compra"><button type="button" class="tab active" data-tab="commercial">1. Dados da compra</button><button type="button" class="tab" data-tab="weighing">2. Pesagem</button><button type="button" class="tab" data-tab="invoice">3. Notas e viagem</button><button type="button" class="tab" data-tab="results">4. Conferência final</button></div>
    <div id="commercial" class="tab-panel">
-    <div class="panel form-panel"><div class="section-heading"><div><small>01 / NEGOCIAÇÃO COMERCIAL</small><h2>Compra e destino</h2></div></div>
+    <div class="panel form-panel"><div class="section-heading"><div><small>DADOS DA COMPRA</small><h2>Origem, comprador e destino</h2><p>Comece pelo fornecedor e pela fazenda onde os animais serão recebidos.</p></div></div>
      <div class="grid three">
-      <label>Fornecedor / pecuarista<input data-key="supplier" required maxlength="150"></label>
+      <label>Nome do fornecedor (pecuarista)<input data-key="supplier" required maxlength="150"></label>
       <label>Fazenda de origem<input data-key="originFarm" maxlength="150"></label>
       <label>UF do fornecedor<input data-key="supplierState" maxlength="2" placeholder="UF"></label>
-      <label>Tipo do fornecedor<select data-key="supplierType"><option value="">Selecionar</option><option>Física</option><option>Jurídica</option></select></label>
-      <label>Categoria animal<input data-key="category" placeholder="Machos, fêmeas…" maxlength="80"></label>
+      <label>Fornecedor é pessoa<select data-key="supplierType"><option value="">Selecione</option><option>Física</option><option>Jurídica</option></select></label>
+      <label>Categoria dos animais<input data-key="category" placeholder="Ex.: machos ou fêmeas" maxlength="80"></label>
       <label>Raça<input data-key="breed" maxlength="80"></label>
       <label>Fazenda de recebimento<input data-key="receivingFarm" maxlength="150"></label>
-      <label>Empresa proprietária (gerencial)<input data-key="managerCompany" maxlength="150"></label>
+      <label>Empresa proprietária da compra (gerencial)<input data-key="managerCompany" maxlength="150"></label>
       <label>Empresa compradora (fiscal)<input data-key="buyerCompany" maxlength="150"></label>
       <label>Fazenda compradora (fiscal)<input data-key="buyerFarm" maxlength="150"></label>
-      <label>IE destino<input data-key="destinationIE" maxlength="30"></label>
-      <label>Tipo da empresa compradora<select data-key="buyerType"><option value="">Selecionar</option><option>Física</option><option>Jurídica</option></select></label>
-      <label>UF da compradora<input data-key="buyerState" maxlength="2" placeholder="UF"></label>
-      <label>Finalidade<select data-key="purpose"><option value="">Selecionar</option><option>Cria</option><option>Recria</option><option>ILP</option><option>Confinamento</option><option>Exportação Gado Vivo</option><option>Trading</option></select></label>
-      <label>Responsável compra<input data-key="buyer" maxlength="100"></label>
+      <label>Inscrição Estadual do destino<input data-key="destinationIE" maxlength="30"></label>
+      <label>Compradora é pessoa<select data-key="buyerType"><option value="">Selecione</option><option>Física</option><option>Jurídica</option></select></label>
+      <label>UF da empresa compradora<input data-key="buyerState" maxlength="2" placeholder="UF"></label>
+      <label>Finalidade da compra<select data-key="purpose"><option value="">Selecione</option><option>Cria</option><option>Recria</option><option>ILP</option><option>Confinamento</option><option>Exportação Gado Vivo</option><option>Trading</option></select></label>
+      <label>Responsável pela compra<input data-key="buyer" maxlength="100"></label>
       <label>Data da compra<input data-key="purchaseDate" type="date"></label>
-      <label>O.C. / código interno<input data-key="orderCode" maxlength="80"></label>
+      <label>Ordem de compra (O.C.)<input data-key="orderCode" maxlength="80"></label>
       <label>Situação<select data-key="status"><option>Em conferência</option><option>Pendente</option><option>Concluída</option></select></label>
      </div>
     </div>
-    <div class="panel form-panel"><div class="section-heading"><div><small>02 / CUSTOS E CONDIÇÕES</small><h2>Impostos, corretagem e pagamento</h2></div></div>
+    <div class="panel form-panel"><div class="section-heading"><div><small>CONDIÇÕES DA NEGOCIAÇÃO</small><h2>Funrural, corretagem e custos</h2><p>Esses dados alimentam o resumo da conferência.</p></div></div>
      <div class="grid three">
-      <label>Opção Funrural do fornecedor<select data-key="funruralOption"><option value="">Selecionar</option><option>Folha de pagamento</option><option>Faturamento</option><option>S/N</option></select></label>
+      <label>Opção de Funrural do fornecedor<select data-key="funruralOption"><option value="">Selecione</option><option>Folha de pagamento</option><option>Faturamento</option><option value="S/N">S/N (conforme a planilha)</option></select></label>
       <label>Descontar Funrural do pecuarista?<select data-key="deductFunrural"><option>Não</option><option>Sim</option></select></label>
-      <label>Tipo de compra<select data-key="purchaseType"><option value="">Selecionar</option><option>FOB</option><option>CIF</option></select></label>
-      <label>Distância média (km, uma perna)<input data-key="distance" type="number" min="0" step="0.01"></label>
-      <label>Corretagem<select data-key="commissionType"><option>S/N</option><option>R$/cb</option><option>% valor da @</option><option>% valor do romaneio</option></select></label>
-      <label>Corretor<input data-key="broker" maxlength="120"></label>
-      <label>Valor unitário da corretagem<input data-key="commissionRate" type="number" min="0" step="0.01"></label>
+      <label>Tipo de compra (frete)<select data-key="purchaseType"><option value="">Selecione</option><option>FOB</option><option>CIF</option></select></label>
+      <label>Distância percorrida (km, uma perna)<input data-key="distance" type="number" min="0" step="0.01"></label>
+      <label>Forma de calcular a corretagem<select data-key="commissionType"><option value="S/N">Sem corretagem (S/N)</option><option value="R$/cb">Valor por cabeça (R$/cabeça)</option><option value="% valor da @">Percentual sobre a arroba</option><option value="% valor do romaneio">Percentual sobre o romaneio</option></select></label>
+      <label>Nome do corretor<input data-key="broker" maxlength="120"></label>
+      <label><span id="commission-rate-label">Valor da corretagem</span><input data-key="commissionRate" type="number" min="0" step="0.01"><span id="commission-rate-hint" class="field-hint"></span></label>
       <label>Outros custos (R$/lote)<input data-key="otherCosts" type="number" min="0" step="0.01"></label>
-      <label>Frete previsto (R$/cb)<input data-key="freightPerHead" type="number" min="0" step="0.01"></label>
-      <label>Vencimento<input data-key="dueDate" type="date"></label>
+      <label>Frete previsto na avaliação (R$/cabeça)<input data-key="freightPerHead" type="number" min="0" step="0.01"></label>
+      <label>Data de vencimento<input data-key="dueDate" type="date"></label>
      </div>
     </div>
    </div>
    <div id="weighing" class="tab-panel" hidden>
-    <div class="panel form-panel"><div class="section-heading"><div><small>ABA PESAGEM / ROMANEIO</small><h2>Grupos de pesagem</h2><p>Um grupo pode representar uma folha ou romaneio, com rendimento próprio. Informe os pesos individuais em kg.</p></div><button id="add-group" class="button light small">＋ Grupo</button></div><div id="groups"></div></div>
-    <div class="panel form-panel"><div class="section-heading"><div><small>DESCONTOS E VALOR</small><h2>Fechamento da pesagem</h2></div></div>
+    <div class="panel form-panel"><div class="section-heading"><div><small>PESAGEM DOS ANIMAIS</small><h2>Folhas e romaneios</h2><p>Crie um grupo por folha ou romaneio. Digite os pesos individuais em kg; cada número corresponde a um animal.</p></div><button id="add-group" class="button light small">＋ Adicionar grupo</button></div><div id="groups"></div></div>
+    <div class="panel form-panel"><div class="section-heading"><div><small>TOTAIS DA PESAGEM</small><h2>Descontos e valor negociado</h2><p>O valor total sem desconto é informado aqui. O sistema calcula o preço por arroba.</p></div></div>
      <div class="grid three">
-      <label>Desconto em cabeças (negativo)<input data-key="headAdjust" type="number" max="0" step="1"></label>
-      <label>Desconto em peso kg (negativo)<input data-key="weightAdjust" type="number" max="0" step="0.01"></label>
-      <label>Desconto em valor R$ (negativo)<input data-key="valueAdjust" type="number" max="0" step="0.01"></label>
-      <label>Valor total sem desconto (R$)<input data-key="baseValue" type="number" min="0" step="0.01"></label>
+      <label>Ajuste de cabeças (use sinal −)<input data-key="headAdjust" type="number" max="0" step="1" placeholder="Ex.: -1"></label>
+      <label>Ajuste de peso em kg (use sinal −)<input data-key="weightAdjust" type="number" max="0" step="0.01" placeholder="Ex.: -15"></label>
+      <label>Ajuste de valor em R$ (use sinal −)<input data-key="valueAdjust" type="number" max="0" step="0.01" placeholder="Ex.: -100"></label>
+      <label>Valor do romaneio antes dos descontos (R$)<input data-key="baseValue" type="number" min="0" step="0.01"></label>
      </div><div class="result-strip" id="weighing-summary"></div>
     </div>
    </div>
    <div id="invoice" class="tab-panel" hidden>
-    <div class="panel form-panel"><div class="section-heading"><div><small>DADOS DE ENTRADA</small><h2>Notas fiscais e acerto</h2></div><button id="add-invoice" class="button light small">＋ Nota fiscal</button></div>
-     <div class="table-scroll"><table class="edit-table"><thead><tr><th>Data</th><th>Número NF</th><th>IE origem</th><th>GTA</th><th>Cabeças</th><th>Valor R$</th><th>Peso chegada kg</th><th></th></tr></thead><tbody id="invoice-rows"></tbody></table></div>
-     <div class="grid three top-gap"><label>Devolução (valor negativo)<input data-key="returnValue" type="number" max="0" step="0.01"></label><label>Data de embarque<input data-key="shippingDate" type="date"></label><label>Data de chegada<input data-key="arrivalDate" type="date"></label><label>Cidade de embarque<input data-key="shippingCity" maxlength="100"></label><label>Originador<input data-key="originator" maxlength="100"></label><label>Responsável embarque<input data-key="shippingLead" maxlength="100"></label></div>
+    <div class="panel form-panel"><div class="section-heading"><div><small>DOCUMENTOS DA COMPRA</small><h2>Notas fiscais e conferência dos valores</h2><p>Registre cada nota para comparar cabeças e valores com a pesagem.</p></div><button id="add-invoice" class="button light small">＋ Adicionar nota</button></div>
+     <div class="table-scroll"><table class="edit-table"><thead><tr><th>Data da nota</th><th>Número da NF</th><th>IE de origem</th><th>GTA</th><th>Cabeças</th><th>Valor da nota (R$)</th><th>Peso na chegada (kg)</th><th><span class="sr-only">Ações</span></th></tr></thead><tbody id="invoice-rows"></tbody></table></div>
+     <div class="grid three top-gap"><label>Valor de devolução (use sinal −)<input data-key="returnValue" type="number" max="0" step="0.01" placeholder="Ex.: -100"></label><label>Data do embarque<input data-key="shippingDate" type="date"></label><label>Data da chegada<input data-key="arrivalDate" type="date"></label><label>Cidade de embarque<input data-key="shippingCity" maxlength="100"></label><label>Originador da compra<input data-key="originator" maxlength="100"></label><label>Responsável pelo embarque<input data-key="shippingLead" maxlength="100"></label></div>
     </div>
-    <div class="panel form-panel"><div class="section-heading"><div><small>DADOS PARA DEPÓSITO</small><h2>Pagamento</h2></div></div>
-     <div class="grid three"><label>Favorecido<input data-key="beneficiary" maxlength="150"></label><label>CPF/CNPJ<input data-key="taxId" maxlength="30"></label><label>Banco<input data-key="bank" maxlength="100"></label><label>Agência<input data-key="agency" maxlength="30"></label><label>Conta corrente<input data-key="account" maxlength="40"></label><label>Código do fornecedor<input data-key="supplierCode" maxlength="50"></label></div>
+    <div class="panel form-panel"><div class="section-heading"><div><small>DADOS PARA DEPÓSITO</small><h2>Dados bancários do fornecedor</h2></div></div>
+     <div class="grid three"><label>Nome do favorecido<input data-key="beneficiary" maxlength="150"></label><label>CPF ou CNPJ<input data-key="taxId" maxlength="30"></label><label>Banco<input data-key="bank" maxlength="100"></label><label>Agência<input data-key="agency" maxlength="30"></label><label>Conta corrente<input data-key="account" maxlength="40"></label><label>Código do fornecedor<input data-key="supplierCode" maxlength="50"></label></div>
      <label class="full-label">Observações<textarea data-key="notes" maxlength="3000" rows="3"></textarea></label>
     </div>
    </div>
    <div id="results" class="tab-panel" hidden>
-    <div class="panel form-panel"><div class="section-heading"><div><small>CONFERÊNCIA DO ESCRITÓRIO</small><h2>Resumo calculado</h2></div></div><div id="warnings"></div><div id="results-grid" class="results-grid"></div><p class="explain">Cálculos espelham as células principais do arquivo fornecido. Arredondamentos na tela não alteram os valores usados nas fórmulas. Verifique as regras fiscais e os dados antes de efetuar pagamentos.</p></div>
+    <div class="panel form-panel"><div class="section-heading"><div><small>CONFERÊNCIA DO ESCRITÓRIO</small><h2>Totais da compra</h2><p>Revise os avisos e compare os números com as notas antes de concluir.</p></div></div><div id="warnings"></div><div id="results-grid" class="results-grid"></div><p class="explain">Os números seguem as fórmulas principais da planilha. Valores exibidos podem estar arredondados; o cálculo usa a precisão completa. Confirme os dados fiscais antes do pagamento.</p></div>
    </div>
-   <div class="editor-foot"><span id="save-state">Alterações ainda não salvas.</span><button id="save-bottom" class="button primary">Salvar compra</button></div>
+   <div class="editor-foot"><span id="save-state">Alterações ainda não salvas.</span><div class="toolbar"><button id="next-step" class="button light">Próxima etapa →</button><button id="save-bottom" class="button primary">Salvar compra</button></div></div>
   </section>
-  <footer>CAMPO · CONTROLE DE COMPRAS <span>Protótipo v0.2</span></footer>
+  <footer>CONTROLE DE COMPRAS DE GADO <span>Versão de demonstração</span></footer>
  </main>
 </div>
 <input id="backup-file" type="file" accept=".json,application/json" hidden>
